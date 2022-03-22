@@ -5,4 +5,5 @@ backend.conf
 ansible/venv
 ansible/vendor
 .terraform
+.terraform.lock.hcl
 
