@@ -1,0 +1,8 @@
+backend.conf
+*.auto.tfvars
+*.tfstate
+*.tfstate.backup
+ansible/venv
+ansible/vendor
+.terraform
+

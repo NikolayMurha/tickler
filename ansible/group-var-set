@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2001
+set -e
+BASEDIR=$(dirname "$0")
+source "${BASEDIR}/venv/bin/activate"
+GROUP_FILE=${BASEDIR}/inventory/group_vars/${1}.yml
+VALUE=$(echo "${3}" | sed -e 's/"/\\"/g')
+CMD=".$2 = \"$VALUE\""
+yq e -i "${CMD}" "${GROUP_FILE}"
+
+
+

@@ -1,0 +1,6 @@
+ansible==4.9.0
+docker>=3.5.0
+passlib
+git+https://github.com/mitogen-hq/mitogen.git@v0.3.1
+
+

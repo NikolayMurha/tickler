@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2001
+set -e
+BASEDIR=$(dirname "$0")
+source "${BASEDIR}/venv/bin/activate"
+VAULT_FILE=${BASEDIR}/inventory/group_vars/all/vault.yml
+TMP_VAULT_FILE=${BASEDIR}/inventory/group_vars/all/vault.tmp.yml
+VALUE=$(echo "${2}" | sed -e 's/"/\\"/g')
+CMD=".$1 = \"$VALUE\""
+cp "${VAULT_FILE}" "${TMP_VAULT_FILE}"
+ansible-vault decrypt "${TMP_VAULT_FILE}"
+echo "${CMD}"
+yq e -i "${CMD}" "${TMP_VAULT_FILE}"
+ansible-vault encrypt "${TMP_VAULT_FILE}"
+mv -f "${TMP_VAULT_FILE}" "${VAULT_FILE}"
+
+
