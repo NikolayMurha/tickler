@@ -6,4 +6,4 @@ ansible/venv
 ansible/vendor
 .terraform
 .terraform.lock.hcl
-inventory/*
+ansible/inventory/*
