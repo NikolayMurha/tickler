@@ -1,12 +1,13 @@
 - name: Install Docker
   hosts: all
   remote_user: root
-  roles:
-    - role: geerlingguy.docker
+
 
 - name: Run tickler
   hosts: all
   remote_user: root
+  roles:
+    - role: geerlingguy.docker
   tasks:
     - name: Validating if the package is installed or not
       apt:
