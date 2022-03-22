@@ -110,7 +110,6 @@ data "azurerm_virtual_machine" "tickler" {
   resource_group_name = azurerm_resource_group.tickler[0].name
 }
 
-
 resource "local_file" "azure_inventory" {
   filename = "./ansible/inventory/tickler_azure"
   content  = templatefile("${path.module}/templates/azure_inventory.tftpl", {
@@ -121,6 +120,9 @@ resource "local_file" "azure_inventory" {
       ansible_become = "yes"
     }
   })
+  depends_on = [
+    azurerm_linux_virtual_machine.tickler
+  ]
 }
 
 output "azure_virtual_machines" {

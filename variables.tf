@@ -24,6 +24,11 @@ variable "do_token" {
   type = string
 }
 
+variable "do_region" {
+  type = string
+  default = "fra1"
+}
+
 variable "azure_vm_count" {
   type = number
   default = 0
@@ -36,7 +41,7 @@ variable "linode_vm_count" {
 
 variable "do_vm_count" {
   type = number
-  default = 0
+  default = 1
 }
 
 
