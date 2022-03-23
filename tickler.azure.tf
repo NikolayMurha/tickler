@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "tickler" {
   count    = var.azure_vm_count > 0 ? 1 : 0
   name     = "tickler_group"
-  location = "japaneast"
+  location = var.azure_location
 }
 
 resource "azurerm_virtual_network" "tickler" {
@@ -111,6 +111,7 @@ data "azurerm_virtual_machine" "tickler" {
 }
 
 resource "local_file" "azure_inventory" {
+  count = var.azure_vm_count > 0 ? 1 : 0
   filename = "./ansible/inventory/tickler_azure"
   content  = templatefile("${path.module}/templates/azure_inventory.tftpl", {
     group                = "tickler"
@@ -123,8 +124,4 @@ resource "local_file" "azure_inventory" {
   depends_on = [
     azurerm_linux_virtual_machine.tickler
   ]
-}
-
-output "azure_virtual_machines" {
-  value = data.azurerm_virtual_machine.tickler
 }

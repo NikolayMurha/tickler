@@ -1,7 +1,11 @@
 - name: Install Docker
   hosts: all
   remote_user: root
-
+  gather_facts: False
+  tasks:
+    - name: Wait nodes preparing (30 second)
+      pause:
+        seconds: 30
 
 - name: Run tickler
   hosts: all
