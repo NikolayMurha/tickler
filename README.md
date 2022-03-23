@@ -1,7 +1,7 @@
-# tickler
+# Tickler
 
-Terraform + Ansible для швидкого підняття `mhddos_proxy` на хмарних сервісах.
-Передбачається, ви вже знайомі з Terraform + Ansible
+Terraform + Ansible для швидкого підняття `mhddos_proxy` на хмарних сервісах
+Передбачається, ви вже знайомі зи словами Terraform, Python, Ansible
 
 Корисні посилання:
 
@@ -20,13 +20,19 @@ https://realpython.com/installing-python
 https://www.python.org/downloads/
 
 #### Ініціалізація `terraform`, `venv` та встановлення `Ansible` із залежностями
-                                          
+
 Передбачається використання `venv` в папці `ansible`
 
+Для Linux або Mac є файл `setup.sh`:
+
 ```
+# Mock для
+touch variables.auto.tfvars
+# Інціалізація terraform
 terraform init .
-touch variables.auto.tfvars 
-cd ./ansible 
+
+# Інціалізація env ansible та встановлення залежностей
+cd ./ansible
 python3 -m venv ./venv
 source ./venv/bin/activate
 pip3 install  -r ./requirements.txt
@@ -35,7 +41,7 @@ ansible-galaxy install -r requirements.yml
 
 ### Налаштування параметрів інстансів
 
-Деякі коменти є у файлі `variables.tf`
+Деякі комментарі є у файлі `variables.tf`
 
 Приклад `variables.auto.tfvars`:
 
