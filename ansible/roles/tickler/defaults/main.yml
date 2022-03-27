@@ -1,5 +1,6 @@
 tickler_targets: https://raw.githubusercontent.com/SlavaUkraineSince1991/DDoS-for-all/main/targets/targets.txt
-tickler_threads: 1000
+tickler_threads: 100
+tickler_debug: False
 # When targets list defined, it will be used instead of url
 # https://ddosukraine.com.ua
 tickler_targets_list: []

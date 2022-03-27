@@ -1,0 +1,33 @@
+- name: Validating if the package is installed or not
+  apt:
+    name: "{{item}}"
+  with_items:
+    - python3
+    - python3-pip
+    - net-tools
+
+- name: Install python docker client
+  pip:
+    name: docker
+
+- set_fact:
+    tickler_command: "{{ tickler_targets_list }}"
+  when: tickler_targets_list | length > 0
+
+- set_fact:
+    tickler_command:
+      - -c
+      - "{{ tickler_targets }}"
+  when: tickler_targets_list | length == 0
+
+- set_fact:
+    tickler_command: "{{ tickler_command + ['--debug'] }}"
+  when: tickler_debug
+
+- name: Run docker containers
+  docker_container:
+    name: mhddos_proxy
+    # auto_remove: no
+    image: ghcr.io/porthole-ascend-cinnamon/mhddos_proxy
+    command: "{{ ['-t', tickler_threads ] + tickler_command }}"
+
